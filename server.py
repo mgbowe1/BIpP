@@ -11,15 +11,19 @@ active_csockets = []
 def p_sock_listener(sock):
     while 1:
         (new_sock, new_addr) = sock.accept()
-        print(new_addr)
+        print("Data producer: {0}".format(new_addr))
         send_thread = threading.Thread(name="send-thread", target=recv_msg, args=([new_sock]))
         send_thread.start()
-        send_thread.join()
 
 def recv_msg(sock):
-    mess = sock.recv(8192)
-    print(mess.decode("ascii"))
-    send_message(mess)
+    running = 1
+    while running:
+        mess = sock.recv(8192)
+        if mess == "\0":
+            running = 0
+        else:
+            print(mess.decode("ascii"))
+            send_message(mess)
 
 def c_sock_listener(sock):
     while 1:
