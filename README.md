@@ -21,7 +21,9 @@ Clients recieve data from the server and decrypt anything encrypted with their p
 
 ### Client installation
 
-TODO
+1. edit domain/ip in code
+2. Build jar file
+3. run jar file
 
 ## Broadcasters
 
@@ -29,7 +31,9 @@ Broadcasters encrypt data then send it to the server for clients to read.
 
 ### Broadcaster installation
 
-TODO
+1. edit domain/ip in code
+2. Build jar file
+3. run jar file
 
 ## About the app
 
