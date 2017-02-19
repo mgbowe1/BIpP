@@ -13,7 +13,7 @@ def p_sock_listener(sock):
         (new_sock, new_addr) = sock.accept()
         print(new_addr)
         active_psockets.append(new_sock)
-        mess = sock.recv(8192)
+        mess = new_sock.recv(8192)
         print(mess.decode("ascii"))
         sendmessage(mess)
 
@@ -22,7 +22,7 @@ def c_sock_listener(sock):
         (new_sock, new_addr) = sock.accept()
         print(new_addr)
         active_csockets.append(new_sock)
-        new_sock.send('Hello client\n'.encode())
+        #new_sock.send('Hello client\n'.encode())
 
 def sendmessage(message):
     for sock in active_csockets:
