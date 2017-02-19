@@ -1,5 +1,3 @@
-package com.owlfloater898.bIpP.RSA;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,13 +21,16 @@ import javax.crypto.NoSuchPaddingException;
 import org.apache.commons.codec.binary.Base64;
 
 class Encryptyr {
-	public static void main(String[] args){
+	
+	public static void main(String[] args)
+	{
 		try{
-		Encryptyr a = new Encryptyr();
-		a.encryptMessage(args[1]);
+			encryptMessage(args[0]);
 		}catch(Exception e){
+			System.out.println(e);
 		}
 	}
+	
 	private Cipher cipher;
 
 	public Encryptyr() throws NoSuchAlgorithmException, NoSuchPaddingException {
@@ -95,10 +96,10 @@ class Encryptyr {
 		return fbytes;
 	}
 	
-	public String encryptMessage(String msg) throws Exception
+	public static String encryptMessage(String msg) throws Exception
 	{
 		Encryptyr ac = new Encryptyr();
-		PrivateKey privateKey = ac.getPrivate("KeyPair/privateKey");
+		PrivateKey privateKey = ac.getPrivate("KP/private");
 		String encrypted_msg = ac.encryptText(msg, privateKey);
 		System.out.println(encrypted_msg);
 		return encrypted_msg;
