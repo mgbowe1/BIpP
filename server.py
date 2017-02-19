@@ -19,7 +19,7 @@ def recv_msg(sock):
     running = 1
     while running:
         mess = sock.recv(8192)
-        if mess == "\0":
+        if not mess:
             running = 0
         else:
             print(mess.decode("ascii"))
@@ -29,13 +29,17 @@ def c_sock_listener(sock):
     while 1:
         (new_sock, new_addr) = sock.accept()
         print(new_addr)
+        new_sock.setblocking(0)
         active_csockets.append(new_sock)
         #new_sock.send('Hello client\n'.encode())
 
 def send_message(message):
     for sock in active_csockets:
-        sock.send(message)
-
+        try:
+            sock.send(message)
+        except IOError:
+            print("{0}: Disconnected".format(sock))
+            active_csockets.remove(sock)
 def init():
     phonesocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     phonesocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

@@ -1,0 +1,19 @@
+body {
+  background:#EEEEFF;
+}
+.navbar {
+  background:#222244;
+}
+.headline {
+  background: #222244;
+  opacity:0.7;
+}
+.headline .container h1, .headline .container h2{
+  background: transparent;
+  color: #EEEEFF;
+  text-align:left;
+  width:100%;
+}
+.name-heading {
+  color:#999999;
+}
