@@ -1,10 +1,10 @@
 import socket
 import json
 import threading
+import select
 
 #Global data
 configs = {"ip":"10.101.44.12", "listen_port":2048, "broadcast_port":4095}
-active_psockets = []
 active_csockets = []
 
 # The phone socket thread
@@ -12,10 +12,14 @@ def p_sock_listener(sock):
     while 1:
         (new_sock, new_addr) = sock.accept()
         print(new_addr)
-        active_psockets.append(new_sock)
-        mess = new_sock.recv(8192)
-        print(mess.decode("ascii"))
-        sendmessage(mess)
+        send_thread = threading.Thread(name="send-thread", target=recv_msg, args=([new_sock]))
+        send_thread.start()
+        send_thread.join()
+
+def recv_msg(sock):
+    mess = sock.recv(8192)
+    print(mess.decode("ascii"))
+    send_message(mess)
 
 def c_sock_listener(sock):
     while 1:
@@ -24,7 +28,7 @@ def c_sock_listener(sock):
         active_csockets.append(new_sock)
         #new_sock.send('Hello client\n'.encode())
 
-def sendmessage(message):
+def send_message(message):
     for sock in active_csockets:
         sock.send(message)
 
