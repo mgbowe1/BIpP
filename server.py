@@ -1,6 +1,7 @@
 import socket
 import json
 import threading
+import select
 
 #Global data
 configs = {"ip":"10.101.44.12", "listen_port":2048, "broadcast_port":4095}
@@ -15,7 +16,7 @@ def p_sock_listener(sock):
         send_thread.start()
         send_thread.join()
 
-def recv_msg(sock)
+def recv_msg(sock):
     mess = sock.recv(8192)
     print(mess.decode("ascii"))
     send_message(mess)
