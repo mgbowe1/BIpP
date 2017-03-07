@@ -10,7 +10,6 @@ import org.json.simple.JSONObject;
 
 import com.owlfloater898.bIpP.RSA.AsymmetricCryptography;
 
-
 public class Messages 
 {
 	JSONObject jobj; 
@@ -22,7 +21,6 @@ public class Messages
 		return jobj;
 	}
 	
-	@Deprecated
 	public boolean testKey(JSONObject jobj)
 	{
 		boolean goodKey = false;
@@ -38,7 +36,6 @@ public class Messages
 		return goodKey;
 	}
 	
-	@Deprecated
 	public String getAndPrintMessage(JSONObject jobj)
 	{
 		String messageFromMyHost = (String) jobj.get("message");
