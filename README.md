@@ -1,5 +1,5 @@
 # BIpP
-A novel protocol for anonymous communication bhind NATs
+A novel protocol for anonymous communication behind NATs
 
 ## Overview
 
