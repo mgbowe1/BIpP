@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
+/**
+ * This class is responsible for handling the commands given to Bipp Client 
+ * @author jjwaldo514
+ *
+ */
 public class Commands
 {
 	File file;
@@ -16,6 +21,11 @@ public class Commands
 		super();
 	}
 
+	/**
+	 * Prints, ouputs the pipe to a file, and executes the command from the given String Array
+	 * @param commandToExecute
+	 * @throws IOException
+	 */
 	public void executeCommand(String[] commandToExecute) throws IOException
 	{
 		ProcessBuilder pb = new ProcessBuilder(commandToExecute);
@@ -25,7 +35,13 @@ public class Commands
 		pb.start();
 		System.out.println("successfully executed command\n\noutput saved to file: " + file);
 	}
-
+	
+	/**
+	 * Parses the given string to a String Array that the ProcessBuilder will be able to interpret and execute
+	 * Returns the String array
+	 * @param message
+	 * @return
+	 */
 	public String[] parseCommand(String message)
 	{
 		ArrayList arrayList = new ArrayList();
@@ -33,6 +49,11 @@ public class Commands
 		return stringArray;
 	}
 	
+	/**
+	 * Retrieves the value of the key in the message JSONObject as a string
+	 * @param jobj
+	 * @return
+	 */
 	public String getCommandToExecute(JSONObject jobj)
 	{
 		String command = (String) jobj.get("message");
