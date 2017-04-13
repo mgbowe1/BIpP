@@ -1,4 +1,7 @@
 package com.owlfloater898.bIpP.RSA;
+/*
+ * ADAPTED FROM https://www.mkyong.com/java/java-asymmetric-cryptography-example/
+ */
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,6 +25,11 @@ import javax.crypto.NoSuchPaddingException;
 
 import org.apache.commons.codec.binary.Base64;
 
+/**
+ * This class is Responsible for the generation of RSA key-pairs
+ * @author jjwaldo514
+ *
+ */
 public class AsymmetricCryptography {
 	private Cipher cipher;
 
