@@ -1,3 +1,8 @@
+# Deprecated
+The new managed repos are
+BIpPServer: https://github.com/owlfloater898/BIpPServer
+BIpPClient: https://github.com/owlfloater898/BIpPClient
+
 # BIpP
 A novel protocol for anonymous communication behind NATs
 
